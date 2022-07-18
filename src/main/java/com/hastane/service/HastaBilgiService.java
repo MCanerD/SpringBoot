@@ -29,6 +29,20 @@ public class HastaBilgiService {
 		hastaBilgiRepository.deleteById(id);
 	}
 
+	public void updateHastaBilgi(String id, HastaBilgi newHastaBilgi) {
+		
+		HastaBilgi oldHastaBilgi = hastaBilgiById(id);
+		oldHastaBilgi.setTc(newHastaBilgi.getTc());
+		oldHastaBilgi.setHastaAd(newHastaBilgi.getHastaAd());
+		oldHastaBilgi.setHastaSoyad(newHastaBilgi.getHastaSoyad());
+		oldHastaBilgi.setHastaYas(newHastaBilgi.getHastaYas());
+		oldHastaBilgi.setHastaSikayeti(newHastaBilgi.getHastaSikayeti());
+		oldHastaBilgi.setTani(newHastaBilgi.getTani());
+		oldHastaBilgi.setYatacakMi(newHastaBilgi.getYatacakMi());
+		
+		hastaBilgiRepository.save(oldHastaBilgi);
+	}
+	
 	public HastaBilgi hastaBilgiById(String id) {
 		
 //		Optional<HastaBilgi>ById = hastaBilgiRepository.findById(id);
@@ -41,6 +55,7 @@ public class HastaBilgiService {
 		return hastaBilgiRepository.findById(id)
 				.orElseThrow(() -> new RuntimeException("Böyle bir kayıt bulunmamaktadır."));
 	}
+
 	
 	
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,18 +41,20 @@ public class HastaneController {
 		return new ResponseEntity<>(hastaBilgiService.createHastaBilgi(newHastaBilgi),HttpStatus.CREATED);
 	}
 
-//	@PutMapping("HastaBilgiDuzenle/{id}")
-//	public ResponseEntity<HastaBilgi> updateHastaBilgi(@PathVariable String id, @RequestBody HastaBilgi newHastaBilgi) {
-//		HastaBilgi eskiHastaBilgi = getHastaBilgiById(id);
-//		eskiHastaBilgi.setHastaAd(newHastaBilgi.getHastaAd());
-//		eskiHastaBilgi.setHastaSoyad(newHastaBilgi.getHastaSoyad());
-//		eskiHastaBilgi.setHastaYas(newHastaBilgi.getHastaYas());
-//		eskiHastaBilgi.setHastaSikayeti(newHastaBilgi.getHastaSikayeti());
-//		eskiHastaBilgi.setTani(newHastaBilgi.getTani());
-//		eskiHastaBilgi.setYatacakMi(newHastaBilgi.getYatacakMi());
-//
-//		return new ResponseEntity<>(HttpStatus.OK);
-//	}
+	@PutMapping("HastaBilgiDuzenle/{id}")
+	public ResponseEntity<HastaBilgi> getHastaBilgi(@PathVariable String id, @RequestBody HastaBilgi newHastaBilgi) {
+		HastaBilgi eskiHastaBilgi = hastaBilgiById(id);
+		eskiHastaBilgi.setHastaAd(newHastaBilgi.getHastaAd());
+		eskiHastaBilgi.setHastaSoyad(newHastaBilgi.getHastaSoyad());
+		eskiHastaBilgi.setHastaYas(newHastaBilgi.getHastaYas());
+		eskiHastaBilgi.setHastaSikayeti(newHastaBilgi.getHastaSikayeti());
+		eskiHastaBilgi.setTani(newHastaBilgi.getTani());
+		eskiHastaBilgi.setYatacakMi(newHastaBilgi.getYatacakMi());
+
+		hastaBilgiService.updateHastaBilgi(id,newHastaBilgi);
+		
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 
 	@DeleteMapping("HastaBilgiSil/{id}")
 	public ResponseEntity<Void> deleteHastaBilgi(@PathVariable String id) {
