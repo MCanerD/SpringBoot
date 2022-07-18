@@ -43,13 +43,6 @@ public class HastaneController {
 
 	@PutMapping("HastaBilgiDuzenle/{id}")
 	public ResponseEntity<HastaBilgi> getHastaBilgi(@PathVariable String id, @RequestBody HastaBilgi newHastaBilgi) {
-		HastaBilgi eskiHastaBilgi = hastaBilgiById(id);
-		eskiHastaBilgi.setHastaAd(newHastaBilgi.getHastaAd());
-		eskiHastaBilgi.setHastaSoyad(newHastaBilgi.getHastaSoyad());
-		eskiHastaBilgi.setHastaYas(newHastaBilgi.getHastaYas());
-		eskiHastaBilgi.setHastaSikayeti(newHastaBilgi.getHastaSikayeti());
-		eskiHastaBilgi.setTani(newHastaBilgi.getTani());
-		eskiHastaBilgi.setYatacakMi(newHastaBilgi.getYatacakMi());
 
 		hastaBilgiService.updateHastaBilgi(id,newHastaBilgi);
 		
