@@ -25,22 +25,29 @@ public class HastaneController {
 
 	public final HastaBilgiService hastaBilgiService;
 
+	//Tüm kayıtları alma.
 	@GetMapping("HastaBilgi")
 	public ResponseEntity<List<HastaBilgi>> getHastaBilgiler() {
 		return new ResponseEntity<>(hastaBilgiService.getHastaBilgi(), HttpStatus.OK);
 	}
 
+	//Seçilen id'li bilgileri alma.
 	@GetMapping("HastaBilgi/{id}")
 	public ResponseEntity<HastaBilgi> getHastaBilgi(@PathVariable String id) {
 		return new ResponseEntity<>(hastaBilgiById(id), HttpStatus.OK);
 	}
+	//Kimlik no ile uyuşan kayıtları alma.
+	@GetMapping("HastaBilgiTc/{tc}")
+	public ResponseEntity<List<HastaBilgi>> getHastaBilgi(@PathVariable Long tc) {
+		return new ResponseEntity<>(hastaBilgiService.getHastaBilgiByTc(tc), HttpStatus.OK);
+	}
 
-
+	//Yeni kayıt oluşturma.
 	@PostMapping("HastaBilgiEkle")
 	public ResponseEntity<HastaBilgi> createHastaBilgi(@RequestBody HastaBilgi newHastaBilgi) {
 		return new ResponseEntity<>(hastaBilgiService.createHastaBilgi(newHastaBilgi),HttpStatus.CREATED);
 	}
-
+	//Kayıt güncelleme/değiştirme.
 	@PutMapping("HastaBilgiDuzenle/{id}")
 	public ResponseEntity<HastaBilgi> getHastaBilgi(@PathVariable String id, @RequestBody HastaBilgi newHastaBilgi) {
 
@@ -48,7 +55,7 @@ public class HastaneController {
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-
+	//Kayıt silme.
 	@DeleteMapping("HastaBilgiSil/{id}")
 	public ResponseEntity<Void> deleteHastaBilgi(@PathVariable String id) {
 
