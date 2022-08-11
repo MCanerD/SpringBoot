@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @ComponentScan("com.hastane.controller")
 @ComponentScan("com.hastane.service")
-//yukarıdaki paketleri anlayamadığım bir sebepten kendi görmedi, taramayı bu şekilde yapmam gerekti.
+//yukarıdaki paketleri anlayamadığım bir sebepten kendi görmedi, taramayı bu şekilde yapmam gerekti.(Sebep paketleri app dışında oluşturmuş olmam.)
 @ComponentScan(basePackages = {"com.hastane.proje.ProjeApplication"})
 @EnableMongoRepositories(basePackages = {"com.hastane.repository"})  //uygulama başlarken repository'i görmeme sorunu çözümü.
 @SpringBootApplication
